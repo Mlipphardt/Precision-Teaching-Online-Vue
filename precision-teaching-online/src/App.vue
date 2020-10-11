@@ -1,18 +1,24 @@
 <template>
   <v-app>
-    <v-container>
       <LogoBar />
+      <Navbar />
+    <v-container>
       <router-view/>
+      <Footer />
     </v-container>
   </v-app>
 </template>
 
 <script>
 import LogoBar from "./components/LogoBar"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 export default {
   components: {
-    LogoBar
+    LogoBar,
+    Navbar,
+    Footer
   },
   data(){
     return {
@@ -23,5 +29,9 @@ export default {
 </script>
 
 <style>
+html, body{
+  height: 100% !important;
+  width: 100% !important
+}
 
 </style>
