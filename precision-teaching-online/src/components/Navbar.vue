@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="blue" id="top-bar" height="50px" dark>
+  <v-app-bar color="blue" app id="top-bar" height="50px" dark>
       <v-row>
         <v-spacer />
         <v-col class="link-wrapper">
@@ -26,7 +26,7 @@ export default {
 <style scoped>
 
 #top-bar{
-    margin-top: 25px !important;
+    margin-top: 74px !important;
 }
 
 .link{

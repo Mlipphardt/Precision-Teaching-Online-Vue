@@ -56,7 +56,7 @@ export default {
 .welcome-carousel{
     height: 100% !important;
     width: 100%;
-    transform: translateY(-20px)
+    // transform: translateY(-20px)
 }
 
 .slide-wrapper{
