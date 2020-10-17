@@ -12,8 +12,8 @@
                 <v-spacer />
                 <v-col cols=8>
                     <v-text-field
-                      v-model="username"
-                      label="Username"
+                      v-model="email"
+                      label="Email"
                     >
                     </v-text-field>
                 </v-col>
@@ -34,7 +34,7 @@
             <v-row>
                 <v-spacer />
                 <v-col class="text-center">
-                    <v-btn color="primary" depressed>Submit</v-btn>
+                    <v-btn color="primary" @click="logIn" depressed>Submit</v-btn>
                 </v-col>
                 <v-spacer />
             </v-row>
@@ -53,7 +53,7 @@
 export default {
     data(){
         return {
-            username: "",
+            email: "",
             password: "",
             signup: false,
         }
@@ -61,8 +61,10 @@ export default {
     methods: {
         signupSwitch(){
             this.signup = !this.signup
+        },
+        logIn(){
+            this.$router.push("/clients")
         }
-
     }
 }
 </script>

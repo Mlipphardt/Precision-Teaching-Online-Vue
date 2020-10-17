@@ -39,4 +39,9 @@ export default {
     width: 25%;
 }
 
+.link:hover{
+    font-weight: 500;
+    transform: scale(1.05)
+}
+
 </style>
