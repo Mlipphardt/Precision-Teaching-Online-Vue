@@ -1,15 +1,17 @@
 <template>
   <div class="home">
-    Hello, world!
+    <WelcomeCarousel />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import WelcomeCarousel from "../components/WelcomeCarousel";
 
 export default {
   name: 'Home',
   components: {
+    WelcomeCarousel
   }
 }
 </script>
@@ -20,7 +22,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   align-content: center;
   text-align: center
 }

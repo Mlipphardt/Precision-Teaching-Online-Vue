@@ -1,10 +1,6 @@
 <template>
-  <div class="logo-bar">
-      <v-row>
-          <v-col class="d-flex justify-center align-center">
-            <h1 class="logo-text">Precision Teaching Online</h1>
-          </v-col>
-      </v-row>
+  <div class="logo-bar d-flex justify-center align-center flex-column text-center">
+    <h1 class="logo-text mt-5">Precision Teaching Online</h1>
   </div>
 </template>
 
@@ -18,7 +14,7 @@ export default {
 
 .logo-bar{
     width: 100%;
-    height: 100px;
+    height: 75px;
 }
 
 .logo-text{

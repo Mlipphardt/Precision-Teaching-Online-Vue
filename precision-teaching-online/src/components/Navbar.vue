@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="blue" id="top-bar" dark>
+  <v-app-bar color="blue" id="top-bar" height="50px" dark>
       <v-row>
         <v-spacer />
         <v-col class="link-wrapper">

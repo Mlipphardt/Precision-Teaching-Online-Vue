@@ -2,10 +2,10 @@
   <v-app>
       <LogoBar />
       <Navbar />
-    <v-container>
+    <!-- <v-container> -->
       <router-view/>
       <Footer />
-    </v-container>
+    <!-- </v-container> -->
   </v-app>
 </template>
 
@@ -31,7 +31,10 @@ export default {
 <style>
 html, body{
   height: 100% !important;
-  width: 100% !important
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow-x: hidden !important;
 }
 
 </style>
