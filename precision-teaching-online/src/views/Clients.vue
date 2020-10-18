@@ -7,6 +7,7 @@
         width="200px"
         class="client-card text-center d-flex align-center justify-center mr-5 ml-5 mb-10"
         color="primary"
+        @click="go"
       >
         <span class="client-title">{{client}}</span>
       </v-card>
@@ -18,6 +19,11 @@ export default {
     data(){
         return {
             clients: ["AA", "BB", "CC", "DD", "EE", "FF"],
+        }
+    },
+    methods: {
+        go(){
+            this.$router.push("/trial");
         }
     }
 }

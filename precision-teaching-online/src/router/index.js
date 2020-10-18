@@ -2,9 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //Views
-import Home from '../views/Home.vue'
-import Login from "../views/Login.vue"
-import Clients from "../views/Clients.vue"
+import Home from '../views/Home.vue';
+import Login from "../views/Login.vue";
+import Clients from "../views/Clients.vue";
+import Programs from "../views/Programs.vue";
+import Trial from "../views/Trial.vue";
+
 
 Vue.use(VueRouter)
 
@@ -23,6 +26,16 @@ const routes = [
     path: '/clients',
     name: 'Clients',
     component: Clients
+  },
+  {
+    path: "/programs",
+    name: 'Programs',
+    component: Programs
+  },
+  {
+    path: "/trial",
+    name: "Trial",
+    component: Trial
   },
   {
     path: '/about',

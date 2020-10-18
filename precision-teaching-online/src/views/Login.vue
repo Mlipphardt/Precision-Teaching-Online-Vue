@@ -4,7 +4,7 @@
             <v-row>
                 <v-spacer />
                 <v-col class="text-center">
-                    <h2>{{signup ? "Login" : "Sign Up"}}</h2>
+                    <h2>{{signup ? "Sign Up" : "Login"}}</h2>
                 </v-col>
                 <v-spacer />
             </v-row>
@@ -41,7 +41,7 @@
             <v-row>
                 <v-spacer />
                 <v-col cols=5 class="text-center">
-                    <span class="signup-text" @click="signupSwitch">{{signup ? "Not a member? Sign up!" : "Already a member? Log in!"}}</span>
+                    <span class="signup-text" @click="signupSwitch">{{!signup ? "Not a member? Sign up!" : "Already a member? Log in!"}}</span>
                 </v-col>
                 <v-spacer />
             </v-row>            

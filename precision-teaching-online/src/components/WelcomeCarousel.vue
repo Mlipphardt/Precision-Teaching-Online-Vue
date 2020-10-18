@@ -40,7 +40,7 @@ export default {
             setTimeout(() => {
                 this.startTimer();
                 welcomeCarousel.goNext();
-            }, 12000)
+            }, 6000)
         }
     }
 }

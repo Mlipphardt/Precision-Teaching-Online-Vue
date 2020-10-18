@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="background">
       <LogoBar />
       <Navbar />
     <!-- <v-container> -->
@@ -35,6 +35,10 @@ html, body{
   margin: 0px !important;
   padding: 0px !important;
   overflow-x: hidden !important;
+}
+
+.background{
+  background-color: whitesmoke;
 }
 
 </style>
