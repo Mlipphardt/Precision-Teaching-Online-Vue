@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from database import db, initialize_db
 from models.user import User
+from models.client import Client
+from models.program import Program
+from models.resource import Resource
 
 from resources.tests import Test
 
