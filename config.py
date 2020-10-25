@@ -3,8 +3,10 @@ import os
 class Dev(object):
 
     ### Database
-    DB_HOST = "localhost"
-    DB_PORT = "3306"
-    DB_Name = "ptodb"
-    DB_USERNAME = 'root'
-    DB_PASSWORD = 'password'
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:password@localhost:3306/ptodb"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_HOST = "localhost"
+    SQLALCHEMY_PORT = "3306"
+    SQLALCHEMY_DATABASE_NAME = "ptodb"
+    SQLALCHEMY_USERNAME = 'root'
+    SQLALCHEMY_PASSWORD = 'password'
