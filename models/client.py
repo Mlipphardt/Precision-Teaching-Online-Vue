@@ -1,8 +1,10 @@
 from database import db
 
 class Client(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    initials = db.Column(db.String(2), nullable=False)
+    id          = db.Column(db.Integer, primary_key=True)
+    initials    = db.Column(db.String(2), nullable=False)
+    programs    = db.relationship('Program', backref='client')
+    trials      = db.relationship('Trial', backref="client")
 
 def __init__(self, id, initials):
     self.id
