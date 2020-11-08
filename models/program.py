@@ -8,23 +8,23 @@ class Program(db.Model):
     trials      = db.relationship('Trial', backref='program')
     client_id   = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
 
-def __init__(self, id, name, measure):
-    self.id
-    self.measure = measure
+    def __init__(self, id, name, measure):
+        self.id
+        self.measure = measure
 
-def json(self):
-    return {
-        "id":        self.id,
-        "name":      self.name,
-        "measure":   self.measure
-        "client_id": self.client_id
-    }
+    def json(self):
+        return {
+            "id":        self.id,
+            "name":      self.name,
+            "measure":   self.measure,
+            "client_id": self.client_id
+        }
 
-def save(self):
-    db.session.add(self)
-    db.session.commit()
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
-def delete(self):
-    db.session.delete(self)
-    db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
