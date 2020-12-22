@@ -119,13 +119,14 @@ export default {
       this.registerDialog = !this.registerDialog;
     },
     register() {
-      console.log("Registering user...");
       let user = {
         email: this.email,
         password: this.password,
         occupation: this.occupation,
       };
       console.log(user);
+      this.$store.dispatch("auth/registerUser", user);
+      this.signupSwitch();
     },
     logIn() {
       this.$router.push("/clients");
