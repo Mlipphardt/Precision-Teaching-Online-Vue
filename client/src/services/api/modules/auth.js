@@ -2,7 +2,7 @@ import api from "../api";
 
 export default class AuthAPI {
   static routes = {
-    register: "/regiser",
+    register: "/register",
   };
 
   static postUser(user) {
