@@ -1,0 +1,31 @@
+.max-height {
+  height: 100vh !important;
+}
+
+html,
+body {
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.v-application--wrap {
+  background-color: #f5f5f5;
+}
+
+.background {
+  background-color: #f5f5f5 !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.exit-icon {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+}

@@ -72,10 +72,16 @@ api.add_resource(User, "/users")
         email_address = request.json['email_address']
         password = request.json['password']
 
-        if bcrypt.check_password_hash(hashed_pw, password):
-            return 'success'
-        else:
-            return 'Password incorrect.', 400
+        user = UserModel.find_by_email(email_address)
+        if not user:
+            return 'Password or username is incorrect', 401
+        
+        else: 
+
+            if bcrypt.check_password_hash(user.password, password):
+                return 'success', 200
+            else:
+                return 'Password incorrect.', 401
 
 
 if __name__ == '__main__':

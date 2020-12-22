@@ -26,6 +26,9 @@ class User(db.Model):
             "position":         self.position
         }
 
+    def find_by_email(self, email_address):
+        return self.query.filter_by(email_address='email_address').first()
+
     def save(self):
         db.session.add(self)
         db.session.commit()
