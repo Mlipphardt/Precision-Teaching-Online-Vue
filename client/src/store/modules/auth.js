@@ -1,14 +1,30 @@
 import AuthAPI from "../../services/api/modules/auth";
 
 const defaultState = () => {
-  return {};
+  return {
+    authenticated: false,
+    user: false,
+  };
 };
 
 const state = defaultState();
 
-const getters = {};
+const getters = {
+  getAuthenticated() {
+    return state.authenticated;
+  },
+};
 
-const mutations = {};
+const mutations = {
+  LOGIN_USER(state, user) {
+    state.user = user;
+    state.authenticated = true;
+  },
+  LOGOUT_USER(state) {
+    state.user = false;
+    state.authenticated = false;
+  },
+};
 
 const actions = {
   registerUser({ commit }, user) {
@@ -24,10 +40,15 @@ const actions = {
     AuthAPI.loginUser(user)
       .then((res) => {
         console.log(res);
+        commit("LOGIN_USER", res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  },
+  logoutUser({ commit }) {
+    commit("LOGOUT_USER");
+    this.$router.push("/");
   },
 };
 
