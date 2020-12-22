@@ -116,20 +116,29 @@ export default {
   },
   methods: {
     signupSwitch() {
+      if (!this.registerDialog) {
+        this.email = "";
+        this.password = "";
+      }
+      this.occupation = "";
       this.registerDialog = !this.registerDialog;
     },
     register() {
       let user = {
-        email: this.email,
+        email_address: this.email,
         password: this.password,
-        occupation: this.occupation,
+        position: this.occupation,
       };
-      console.log(user);
       this.$store.dispatch("auth/registerUser", user);
       this.signupSwitch();
     },
     logIn() {
-      this.$router.push("/clients");
+      let user = {
+        email_address: this.email,
+        password: this.password,
+      };
+      this.$store.dispatch("auth/loginUser", user);
+      //this.$router.push("/clients");
     },
   },
 };

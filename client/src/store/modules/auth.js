@@ -12,8 +12,16 @@ const mutations = {};
 
 const actions = {
   registerUser({ commit }, user) {
-    console.log(user);
     AuthAPI.postUser(user)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  loginUser({ commit }, user) {
+    AuthAPI.loginUser(user)
       .then((res) => {
         console.log(res);
       })

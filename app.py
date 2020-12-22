@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -50,45 +51,42 @@ def moves():
 #@cross_origin(origin='*')
 def register():
     print("Registering")
+    json_request = request.get_json()
+    
+    print(json_request)
+    #return request.get_json()
 
-    return "ok"
-    # if not request.json:
-    #     return {"Error": "User information incorrect."}, 400
+    email_address = json_request["email_address"]
+    password = bcrypt.generate_password_hash(json_request["password"]).decode('utf-8')
+    position = json_request["position"]
 
-    # email_address = request.json["email_address"]
-    # password = bcrypt.generate_password_hash(request.json["password"]).decode('utf-8')
-    # position = request.json["position"]
-    # response = jsonify(request.json)
-
-    # try:
-    #     item = UserModel( None, email_address, password, position)
-    #     item.save()
-    #     return 201
+    try:
+        item = UserModel( None, email_address, password, position)
+        item.save()
+        return json_request
 
 
-    # except Exception as err: 
-    #     return str(err)
+    except Exception as err: 
+        return str(err)
 
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    if not request.json:
-        return {"Error": "User information incorrect."}, 400
+    json_request = request.get_json()
+    print(json_request)
 
-    email_address = request.json['email_address']
-    password = request.json['password']
+    email_address = json_request['email_address']
+    password = json_request['password']
 
-    user = UserModel.find_by_email(email_address)
+    user = UserModel.query.filter_by(email_address=email_address).first()
+
     if not user:
-        return 'Password or username is incorrect', 401
-    
-    else: 
-
-        if bcrypt.check_password_hash(user.password, password):
-            return 'success', 200
-        else:
-            return 'Password incorrect.', 401
+        return 'Failed.'
+    if bcrypt.check_password_hash(user.password, password):
+        return 'OK'
+    else:
+        return 'Password incorrect.'
 
 
 if __name__ == '__main__':
