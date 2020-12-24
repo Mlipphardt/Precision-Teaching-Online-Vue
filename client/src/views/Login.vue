@@ -125,7 +125,7 @@ export default {
     },
     register() {
       let user = {
-        email_address: this.email,
+        email_address: this.email.toLowerCase(),
         password: this.password,
         position: this.occupation,
       };

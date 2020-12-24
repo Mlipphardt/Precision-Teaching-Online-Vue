@@ -10,7 +10,7 @@ const defaultState = () => {
 const state = defaultState();
 
 const getters = {
-  getAuthenticated() {
+  getAuthenticated(state) {
     return state.authenticated;
   },
 };
@@ -18,10 +18,12 @@ const getters = {
 const mutations = {
   LOGIN_USER(state, user) {
     state.user = user;
+    localStorage.setItem("user", user.token);
     state.authenticated = true;
   },
   LOGOUT_USER(state) {
     state.user = false;
+    localStorage.removeItem("user");
     state.authenticated = false;
   },
 };

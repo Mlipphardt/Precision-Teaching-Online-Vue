@@ -10,3 +10,6 @@ class Dev(object):
     SQLALCHEMY_DATABASE_NAME = "ptodb"
     SQLALCHEMY_USERNAME = 'root'
     SQLALCHEMY_PASSWORD = 'password'
+
+    ###JWT
+    SECRET = "developersecretonly"

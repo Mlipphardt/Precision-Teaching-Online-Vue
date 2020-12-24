@@ -1,11 +1,14 @@
 from flask import Flask
 from flask import request
+from flask import jsonify
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from database import db, initialize_db
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS, cross_origin
+import jwt, datetime
+from functools import wraps
 
 #Models
 from models.user import User as UserModel
@@ -33,6 +36,22 @@ with app.app_context():
     db.create_all()
 
 api = Api(app)
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token')
+
+        if not token:
+            return jsonify({'message': "Token is missing."})
+
+        try:
+            data = jwt.decode(token, app.config['SECRET'])
+        except:
+            return jsnoify({'message': "Token is invalid."})
+
+        return f(*args, **kwargs)
+
 
 #Resources
 api.add_resource(User, "/users")
@@ -84,7 +103,12 @@ def login():
     if not user:
         return 'Failed.'
     if bcrypt.check_password_hash(user.password, password):
-        return 'OK'
+        token = jwt.encode({
+            'email': user.email_address,
+            'position': user.position,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)
+        }, app.config['SECRET'])
+        return jsonify({'token': token})
     else:
         return 'Password incorrect.'
 

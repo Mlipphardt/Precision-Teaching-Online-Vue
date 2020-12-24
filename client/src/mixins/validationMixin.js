@@ -10,5 +10,8 @@ export default {
     validateTextField(text) {
       console.log("Validating text field with the following text: " + text);
     },
+    validateEmail(email) {
+      console.log("Validating email with the following text: " + email);
+    },
   },
 };
