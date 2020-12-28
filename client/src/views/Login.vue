@@ -18,7 +18,12 @@
       <v-row>
         <v-spacer />
         <v-col cols="8">
-          <v-text-field v-model="password" label="Password" type="password">
+          <v-text-field
+            @keyup.enter="logIn"
+            v-model="password"
+            label="Password"
+            type="password"
+          >
           </v-text-field>
         </v-col>
         <v-spacer />
@@ -138,7 +143,6 @@ export default {
         password: this.password,
       };
       this.$store.dispatch("auth/loginUser", user);
-      //this.$router.push("/clients");
     },
   },
 };

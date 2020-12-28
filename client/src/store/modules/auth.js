@@ -1,4 +1,5 @@
 import AuthAPI from "../../services/api/modules/auth";
+import router from "../../router/index";
 
 const defaultState = () => {
   return {
@@ -42,7 +43,12 @@ const actions = {
     AuthAPI.loginUser(user)
       .then((res) => {
         console.log(res);
-        commit("LOGIN_USER", res.data);
+        if (res.data.token) {
+          commit("LOGIN_USER", res.data);
+          router.push("/clients");
+        } else {
+          console.log(res.data);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +56,7 @@ const actions = {
   },
   logoutUser({ commit }) {
     commit("LOGOUT_USER");
-    this.$router.push("/");
+    router.push("/");
   },
 };
 
