@@ -2,7 +2,7 @@
   <v-container class="mt-10 wrapper">
     <v-row>
       <v-col cols="2">
-        <v-btn color="#00FF00" dark
+        <v-btn color="#00FF00" dark @click="registerDialog = true"
           ><v-icon class="mr-1">mdi-plus</v-icon>Add Client</v-btn
         >
       </v-col>
@@ -23,6 +23,20 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog v-model="registerDialog">
+      <v-card>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="clientInitials" label="Client Initials" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn dark color="#00FF00" @click="addClient">Add</v-btn>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -30,10 +44,18 @@
 export default {
   data() {
     return {
+      registerDialog: false,
       clients: ["AA", "BB", "CC", "DD", "EE", "FF"],
+      clientInitials: "",
     };
   },
   methods: {
+    addClient(){
+      let newClient = {
+        intiials: this.clientInitials
+      }
+      console.log(newClient)
+    },
     go() {
       this.$router.push("/trial");
     },
