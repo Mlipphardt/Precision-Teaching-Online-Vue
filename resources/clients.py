@@ -16,7 +16,7 @@ class Clients(Resource):
             user_id = data['user_id']
             item = ClientModel( None, initials, user_id)
             item.save()
-            return data
+            return "test"
 
         except Exception as err: 
             return str(err)
