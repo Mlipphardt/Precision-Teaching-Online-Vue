@@ -19,6 +19,7 @@ from models.trial import Trial as TrialModel
 
 #Resources
 from resources.users import User
+from resources.clients import Clients
 
 app = Flask(__name__)
 
@@ -55,6 +56,7 @@ def token_required(f):
 
 #Resources
 api.add_resource(User, "/users")
+api.add_resource(Clients, "/clients")
 
 
 #Login and testing

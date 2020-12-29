@@ -3,7 +3,8 @@ from database import db
 class Resource(db.Model):
     id              = db.Column(db.Integer, primary_key=True)
     image           = db.Column(db.String(256), nullable=False)
-    program_id      = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=False)
+    # program_id      = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=False)
+    program_id      = db.Column(db.String(50), nullable=False)
 
     def __init__(self, image, program_id):
         self.id
