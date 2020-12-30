@@ -57,7 +57,7 @@ export default {
         ? localStorage.getItem("user_id")
         : "1";
       let newClient = {
-        intiials: this.clientInitials,
+        initials: this.clientInitials,
         user_id: user_id,
       };
       this.$store.dispatch("client/createClient", newClient);

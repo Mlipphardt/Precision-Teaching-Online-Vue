@@ -13,7 +13,7 @@ const getters = {};
 const mutations = {};
 
 const actions = {
-  createUser({ commit }, user) {
+  createClient({ commit }, client) {
     return new Promise((resolve, reject) => {
       ClientAPI.postClient(client)
         .then((res) => {
