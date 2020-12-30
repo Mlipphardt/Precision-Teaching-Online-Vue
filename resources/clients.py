@@ -21,7 +21,7 @@ class Clients(Resource):
         except Exception as err: 
             return str(err)
 
-class ClientsByReader(Resource):
+class ClientsByUser(Resource):
 
     def get(self, user_id):
         #return user_id
