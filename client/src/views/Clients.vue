@@ -23,16 +23,18 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-dialog v-model="registerDialog">
-      <v-card>
+    <v-dialog width="500px" height="600px" v-model="registerDialog">
+      <v-card class="pa-3">
         <v-row>
           <v-col>
             <v-text-field v-model="clientInitials" label="Client Initials" />
           </v-col>
         </v-row>
         <v-row>
-          <v-col>
-            <v-btn dark color="#00FF00" @click="addClient">Add</v-btn>
+          <v-col class="d-flex justify-end pt-0">
+            <v-btn dark color="#00FF00" @click="addClient"
+              >Add<v-icon class="ml-2">mdi-plus</v-icon></v-btn
+            >
           </v-col>
         </v-row>
       </v-card>
@@ -50,11 +52,16 @@ export default {
     };
   },
   methods: {
-    addClient(){
+    addClient() {
+      let user_id = localStorage.getItem("user_id")
+        ? localStorage.getItem("user_id")
+        : "1";
       let newClient = {
-        intiials: this.clientInitials
-      }
-      console.log(newClient)
+        intiials: this.clientInitials,
+        user_id: user_id,
+      };
+      this.$store.dispatch("client/createClient", newClient);
+      console.log(newClient);
     },
     go() {
       this.$router.push("/trial");
