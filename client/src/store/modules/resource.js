@@ -1,32 +1,32 @@
-import ClientAPI from "../../services/api/modules/clients";
+import ResourceAPI from "../../services/api/modules/resources";
 
 const defaultState = () => {
   return {
-    client: {},
+    resource: {},
   };
 };
 
 const state = defaultState();
 
 const getters = {
-  getClient(state) {
-    return state.client;
+  getResource(state) {
+    return state.resource;
   },
 };
 
 const mutations = {
-  SET_CLIENT(state, client) {
-    state.client = client;
+  SET_RESOURCE(state, resource) {
+    state.resource = resource;
   },
 };
 
 const actions = {
-  createClient({ commit }, client) {
+  createResource({ commit }, resource) {
     return new Promise((resolve, reject) => {
-      ClientAPI.postClient(client)
+      ResourceAPI.postResource(resource)
         .then((res) => {
           console.log(res);
-          alert("Client successfully created!");
+          alert("Resource successfully created!");
           resolve();
         })
         .catch((err) => {
@@ -35,12 +35,12 @@ const actions = {
         });
     });
   },
-  getUserClients({ commit }, user_id) {
+  getProgramResources({ commit }, program_id) {
     return new Promise((resolve, reject) => {
-      ClientAPI.getClientsByUser(user_id)
+      ResourceAPI.getResourcesByProgram(program_id)
         .then((res) => {
           console.log(res);
-          console.log("Client lookup successful.");
+          console.log("Program lookup successful.");
           resolve(res.data);
         })
         .catch((err) => {
@@ -49,9 +49,9 @@ const actions = {
         });
     });
   },
-  setClient({ commit }, client) {
-    console.log("Setting client...");
-    commit("SET_CLIENT", client);
+  setResource({ commit }, resource) {
+    console.log("Setting resource...");
+    commit("SET_RESOURCE", resource);
   },
 };
 

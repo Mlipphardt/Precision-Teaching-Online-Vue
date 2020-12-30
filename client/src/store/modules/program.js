@@ -1,32 +1,32 @@
-import ClientAPI from "../../services/api/modules/clients";
+import ProgramAPI from "../../services/api/modules/programs";
 
 const defaultState = () => {
   return {
-    client: {},
+    program: {},
   };
 };
 
 const state = defaultState();
 
 const getters = {
-  getClient(state) {
-    return state.client;
+  getProgram(state) {
+    return state.program;
   },
 };
 
 const mutations = {
-  SET_CLIENT(state, client) {
-    state.client = client;
+  SET_PROGRAM(state, program) {
+    state.program = program;
   },
 };
 
 const actions = {
-  createClient({ commit }, client) {
+  createProgram({ commit }, client) {
     return new Promise((resolve, reject) => {
-      ClientAPI.postClient(client)
+      ProgramAPI.postProgram(client)
         .then((res) => {
           console.log(res);
-          alert("Client successfully created!");
+          alert("Program successfully created!");
           resolve();
         })
         .catch((err) => {
@@ -35,12 +35,12 @@ const actions = {
         });
     });
   },
-  getUserClients({ commit }, user_id) {
+  getClientPrograms({ commit }, client_id) {
     return new Promise((resolve, reject) => {
-      ClientAPI.getClientsByUser(user_id)
+      ProgramAPI.getProgramsByClient(client_id)
         .then((res) => {
           console.log(res);
-          console.log("Client lookup successful.");
+          console.log("Program lookup successful.");
           resolve(res.data);
         })
         .catch((err) => {
@@ -49,9 +49,9 @@ const actions = {
         });
     });
   },
-  setClient({ commit }, client) {
-    console.log("Setting client...");
-    commit("SET_CLIENT", client);
+  setProgram({ commit }, program) {
+    console.log("Setting program...");
+    commit("SET_PROGRAM", program);
   },
 };
 

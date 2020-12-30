@@ -17,9 +17,9 @@
           width="200px"
           class="client-card text-center d-flex align-center justify-center mr-5 ml-5 mb-10"
           color="primary"
-          @click="go"
+          @click="go(client)"
         >
-          <span class="client-title">{{ client }}</span>
+          <span class="client-title">{{ client.initials }}</span>
         </v-card>
       </v-col>
     </v-row>
@@ -47,24 +47,43 @@ export default {
   data() {
     return {
       registerDialog: false,
-      clients: ["AA", "BB", "CC", "DD", "EE", "FF"],
+      clients: [],
       clientInitials: "",
     };
   },
-  methods: {
-    addClient() {
-      let user_id = localStorage.getItem("user_id")
+  computed: {
+    user_id() {
+      return localStorage.getItem("user_id")
         ? localStorage.getItem("user_id")
         : "1";
+    },
+  },
+  created() {
+    this.fetchClients();
+  },
+  methods: {
+    addClient() {
       let newClient = {
         initials: this.clientInitials,
-        user_id: user_id,
+        user_id: this.user_id,
       };
       this.$store.dispatch("client/createClient", newClient);
       console.log(newClient);
     },
-    go() {
-      this.$router.push("/trial");
+    fetchClients() {
+      console.log("Fetching clients...");
+      this.$store
+        .dispatch("client/getUserClients", this.user_id)
+        .then((res) => {
+          this.clients = res;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    go(client) {
+      this.$store.dispatch("client/setClient", client);
+      this.$router.push("/client-details");
     },
   },
 };

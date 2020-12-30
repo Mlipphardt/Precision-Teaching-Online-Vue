@@ -8,8 +8,11 @@
           >Login</span
         >
         <span v-else class="link" @click="logoutUser">Logout</span>
-        <span v-if="getAuthenticated" class="link">Clients</span>
-        <span v-if="getAuthenticated" class="link">Resources</span>
+
+        <span class="link" @click="goto('/learnmore')">Learn More</span>
+        <span v-if="getAuthenticated" class="link" @click="goto('/clients')"
+          >Clients</span
+        >
       </v-col>
       <v-spacer />
     </v-row>
