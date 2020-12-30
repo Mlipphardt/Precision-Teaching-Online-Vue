@@ -19,7 +19,7 @@ from models.trial import Trial as TrialModel
 
 #Resources
 from resources.users import User
-from resources.clients import Clients
+from resources.clients import Clients, ClientsByReader
 
 app = Flask(__name__)
 
@@ -49,7 +49,7 @@ def token_required(f):
         try:
             data = jwt.decode(token, app.config['SECRET'])
         except:
-            return jsnoify({'message': "Token is invalid."})
+            return jsonify({'message': "Token is invalid."})
 
         return f(*args, **kwargs)
 
@@ -57,6 +57,7 @@ def token_required(f):
 #Resources
 api.add_resource(User, "/users")
 api.add_resource(Clients, "/clients")
+api.add_resource(ClientsByReader, "/clients-by-reader/<string:user_id>")
 
 
 #Login and testing

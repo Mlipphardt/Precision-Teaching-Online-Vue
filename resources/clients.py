@@ -16,7 +16,13 @@ class Clients(Resource):
             user_id = data['user_id']
             item = ClientModel( None, initials, user_id)
             item.save()
-            return "test"
+            return data
 
         except Exception as err: 
             return str(err)
+
+class ClientsByReader(Resource):
+
+    def get(self, user_id):
+        #return user_id
+        return [client.json() for client in ClientModel.query.filter_by(user_id=user_id).all()]
