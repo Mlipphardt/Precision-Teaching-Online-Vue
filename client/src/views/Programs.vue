@@ -14,9 +14,17 @@
       </v-col>
     </v-row>
     <v-row v-if="programs">
-      <v-col class="d-flex justify-space-between"> </v-col>
+      <v-col>
+        <main>
+          <ProgramCard
+            v-for="program in programs"
+            :key="program.id"
+            :program="program"
+          />
+        </main>
+      </v-col>
     </v-row>
-    <v-row else>
+    <v-row v-else>
       <v-col class="text-center d-flex justify-center">
         <v-card
           width="500"
@@ -57,7 +65,13 @@
 </template>
 
 <script>
+import ProgramCard from "../components/cards/ProgramCard";
+
 export default {
+  name: "Programs",
+  components: {
+    ProgramCard,
+  },
   data() {
     return {
       programs: [],
@@ -67,12 +81,25 @@ export default {
       measure: "",
     };
   },
+  created() {
+    this.getPrograms();
+  },
   computed: {
     client() {
       return this.$store.getters["client/getClient"];
     },
   },
   methods: {
+    getPrograms() {
+      this.$store
+        .dispatch("program/getClientPrograms", this.client.id)
+        .then((res) => {
+          this.programs = res;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     addProgram() {
       console.log("Adding program...");
       let program = {
