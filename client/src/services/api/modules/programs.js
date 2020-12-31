@@ -11,6 +11,6 @@ export default class ProgramAPI {
   }
 
   static getProgramsByClient(client_id) {
-    return api.get(`${this.routes.byUser}/${client_id}`);
+    return api.get(`${this.routes.byClient}/${client_id}`);
   }
 }

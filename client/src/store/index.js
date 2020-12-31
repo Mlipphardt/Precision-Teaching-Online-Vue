@@ -16,6 +16,9 @@ export default new Vuex.Store({
   modules: {
     auth,
     client,
+    trial,
+    resource,
+    program,
   },
   plugins: [createPersistedState()],
 });

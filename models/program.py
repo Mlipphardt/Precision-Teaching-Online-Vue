@@ -9,9 +9,11 @@ class Program(db.Model):
     # trials      = db.relationship('Trial', backref='program')
     # client_id   = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
 
-    def __init__(self, id, name, measure):
+    def __init__(self, id, name, measure, client_id):
         self.id
+        self.name = name
         self.measure = measure
+        self.client_id = client_id
 
     def json(self):
         return {

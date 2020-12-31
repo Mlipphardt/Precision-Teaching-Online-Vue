@@ -16,7 +16,8 @@ class Trial(db.Model):
         return {
             "id":           self.id,
             "score":        self.score,
-            "program_id":   self.program_id
+            "program_id":   self.program_id,
+            "client_id":    self.client_id
         }
 
     def save(self):

@@ -22,6 +22,7 @@ from resources.users import User
 from resources.clients import Clients, ClientsByUser
 from resources.programs import Programs, ProgramsByClient
 from resources.resources import Resources, ResourcesByProgram
+from resources.trials import Trial, TrialsByClient, TrialsByProgram
 
 
 app = Flask(__name__)
@@ -62,9 +63,12 @@ api.add_resource(User, "/users")
 api.add_resource(Clients, "/clients")
 api.add_resource(ClientsByUser, "/clients-by-user/<string:user_id>")
 api.add_resource(Programs, "/programs")
-api.add_resource(ProgramsByClient, "/progams-by-client/<string:client_id>")
+api.add_resource(ProgramsByClient, "/programs-by-client/<string:client_id>")
 api.add_resource(Resources, "/resources")
 api.add_resource(ResourcesByProgram, "/resources-by-program/<string:program_id>")
+api.add_resource(Trial, "/trials")
+api.add_resource(TrialsByClient, "/trials-by-client/<string:client_id>")
+api.add_resource(TrialsByProgram, "/trials-by-program/<string:program_id>")
 
 
 #Login and testing

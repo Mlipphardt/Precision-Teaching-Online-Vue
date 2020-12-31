@@ -12,6 +12,7 @@ class Programs(Resource):
 
     def post(self):
         data = Programs.parser.parse_args()
+        print(data)
         try:
             name      = data['name']
             measure   = data['measure']
@@ -24,5 +25,5 @@ class Programs(Resource):
             return str(err)
 
 class ProgramsByClient(Resource):
-    def get(self):
+    def get(self, client_id):
         return [program.json() for program in ProgramModel.query.filter_by(client_id=client_id).all()]
