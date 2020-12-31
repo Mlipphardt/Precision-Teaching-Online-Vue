@@ -13,3 +13,7 @@ class Dev(object):
 
     ###JWT
     SECRET = "developersecretonly"
+
+    ###S3
+    ACCESS_KEY="AKIARW3HUKTTYFDTB254"
+    SECRET_ACCESS_KEY="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"

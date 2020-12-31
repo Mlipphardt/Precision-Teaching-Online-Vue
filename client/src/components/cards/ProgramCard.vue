@@ -9,7 +9,13 @@
       <v-col class="d-flex justify-space-around pb-0 mt-3">
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn fab dark color="#AA0000" v-bind="attrs" v-on="on"
+            <v-btn
+              fab
+              dark
+              color="#AA0000"
+              v-bind="attrs"
+              v-on="on"
+              @click="manageProgramResources"
               ><v-icon>mdi-notebook</v-icon></v-btn
             >
           </template>
@@ -42,6 +48,12 @@ export default {
     program: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    manageProgramResources() {
+      this.$store.dispatch("program/setProgram", this.program);
+      this.$router.push("/resources");
     },
   },
 };

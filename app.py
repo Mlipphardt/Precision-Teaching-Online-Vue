@@ -21,7 +21,6 @@ from models.trial import Trial as TrialModel
 from resources.users import User
 from resources.clients import Clients, ClientsByUser
 from resources.programs import Programs, ProgramsByClient
-from resources.resources import Resources, ResourcesByProgram
 from resources.trials import Trial, TrialsByClient, TrialsByProgram
 
 
@@ -39,6 +38,8 @@ bcrypt = Bcrypt(app)
 
 with app.app_context():
     db.create_all()
+    from resources.resources import Resources, ResourcesByProgram
+
 
 api = Api(app)
 

@@ -13,7 +13,7 @@
         <h4 class="text-center">Programs for {{ client.initials }}</h4>
       </v-col>
     </v-row>
-    <v-row v-if="programs">
+    <v-row v-if="programs.length > 0 && programs != undefined">
       <v-col>
         <main>
           <ProgramCard

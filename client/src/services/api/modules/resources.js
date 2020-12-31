@@ -7,6 +7,7 @@ export default class ResourceAPI {
   };
 
   static postResource(resource) {
+    console.log("res")
     return api.post(this.routes.resources, resource);
   }
 

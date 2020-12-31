@@ -8,6 +8,7 @@ import Clients from "../views/Clients.vue";
 import Programs from "../views/Programs.vue";
 import Trial from "../views/Trial.vue";
 import ClientDetails from "../views/ClientDetails";
+import Resources from "../views/Resources";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,11 @@ const routes = [
     path: "/client-details",
     name: "Client Details",
     component: ClientDetails,
+  },
+  {
+    path: "/resources",
+    name: "Resources",
+    component: Resources,
   },
   {
     path: "/about",

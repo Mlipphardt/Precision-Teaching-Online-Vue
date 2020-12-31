@@ -40,7 +40,7 @@ const actions = {
       ResourceAPI.getResourcesByProgram(program_id)
         .then((res) => {
           console.log(res);
-          console.log("Program lookup successful.");
+          console.log("Resource lookup successful.");
           resolve(res.data);
         })
         .catch((err) => {
