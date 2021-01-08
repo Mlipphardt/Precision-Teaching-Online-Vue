@@ -31,7 +31,13 @@
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn fab dark color="#00FF00" v-bind="attrs" v-on="on"
+            <v-btn
+              fab
+              dark
+              color="#00FF00"
+              v-bind="attrs"
+              v-on="on"
+              @click="runTrial"
               ><v-icon>mdi-lead-pencil</v-icon></v-btn
             >
           </template>
@@ -54,6 +60,10 @@ export default {
     manageProgramResources() {
       this.$store.dispatch("program/setProgram", this.program);
       this.$router.push("/resources");
+    },
+    runTrial() {
+      this.$store.dispatch("program/setProgram", this.program);
+      this.$router.push("/trial");
     },
   },
 };

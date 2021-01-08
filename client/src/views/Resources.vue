@@ -15,11 +15,12 @@
     </v-row>
     <v-row v-if="resources.length > 0 && resources != undefined">
       <v-col>
-        <main>
+        <main class="d-flex justify-space-around">
           <ResourceCard
             v-for="resource in resources"
             :key="resource.id"
             :img="resource.image"
+            :id="resource.id"
           />
         </main>
       </v-col>
@@ -77,7 +78,16 @@ export default {
       image: null,
     };
   },
-  created() {},
+  created() {
+    this.$store
+      .dispatch("resource/getProgramResources", this.program.id)
+      .then((res) => {
+        this.resources = res;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   computed: {
     client() {
       return this.$store.getters["client/getClient"];
@@ -96,7 +106,10 @@ export default {
       for (let value of resource.values()) {
         console.log(value);
       }
-      this.$store.dispatch("resource/createResource", resource);
+      this.$store.dispatch("resource/createResource", resource).then(() => {
+        this.getResources();
+        this.resourceDialog = false;
+      });
     },
     getResources() {
       this.$store

@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-spacer />
-      <v-col cols=8>
+      <v-col cols="8">
         <Target />
       </v-col>
       <v-spacer />
@@ -15,24 +15,30 @@ import Target from "../components/Target";
 
 export default {
   components: {
-    Target
+    Target,
   },
-  data(){
+  data() {
     return {
       active: false,
-    }
+    };
   },
-  mounted(){
-    console.log("Fetching program information...")
+  mounted() {
+    console.log("Fetching program information...");
+  },
+  computed: {
+    client() {
+      return this.$store.getters["client/getClient"];
+    },
+    program() {
+      return this.$store.getters["program/getProgram"];
+    },
   },
   methods: {
-    doStuff(){
-      console.log("Doing stuff!")
-    }
-  }
-}
+    doStuff() {
+      console.log("Doing stuff!");
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

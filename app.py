@@ -43,7 +43,7 @@ bcrypt = Bcrypt(app)
 with app.app_context():
     print(app.config['SECRET_ACCESS_KEY'])
     db.create_all()
-    from resources.resources import Resources, ResourcesByProgram
+    from resources.resources import Resources, ResourcesByProgram, DeleteResourceByID
 
 
 api = Api(app)
@@ -72,6 +72,7 @@ api.add_resource(Programs, "/programs")
 api.add_resource(ProgramsByClient, "/programs-by-client/<string:client_id>")
 api.add_resource(Resources, "/resources")
 api.add_resource(ResourcesByProgram, "/resources-by-program/<string:program_id>")
+api.add_resource(DeleteResourceByID, "/delete-resource-by-id/<string:resource_id>")
 api.add_resource(Trial, "/trials")
 api.add_resource(TrialsByClient, "/trials-by-client/<string:client_id>")
 api.add_resource(TrialsByProgram, "/trials-by-program/<string:program_id>")

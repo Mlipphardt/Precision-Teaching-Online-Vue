@@ -26,7 +26,7 @@ const actions = {
       ResourceAPI.postResource(resource)
         .then((res) => {
           console.log(res);
-          alert("Resource successfully created!");
+          console.log("Resource successfully created!");
           resolve();
         })
         .catch((err) => {
@@ -52,6 +52,21 @@ const actions = {
   setResource({ commit }, resource) {
     console.log("Setting resource...");
     commit("SET_RESOURCE", resource);
+  },
+  deleteResourceByID({ commit }, resource_id) {
+    console.log("Deleting resource...");
+    return new Promise((resolve, reject) => {
+      ResourceAPI.deleteResourceById(resource_id)
+        .then((res) => {
+          console.log(res);
+          console.log("Resource deletion successful");
+          resolve();
+        })
+        .catch((err) => {
+          console.log(err);
+          reject();
+        });
+    });
   },
 };
 
