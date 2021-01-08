@@ -12,7 +12,6 @@ class Programs(Resource):
 
     def post(self):
         data = Programs.parser.parse_args()
-        print(data)
         try:
             name      = data['name']
             measure   = data['measure']

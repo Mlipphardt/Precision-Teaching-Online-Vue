@@ -6,7 +6,7 @@ class Resource(db.Model):
     # program_id      = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=False)
     program_id      = db.Column(db.String(50), nullable=False)
 
-    def __init__(self, image, program_id):
+    def __init__(self, id, image, program_id):
         self.id
         self.image          = image
         self.program_id     = program_id

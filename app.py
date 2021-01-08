@@ -23,6 +23,10 @@ from resources.clients import Clients, ClientsByUser
 from resources.programs import Programs, ProgramsByClient
 from resources.trials import Trial, TrialsByClient, TrialsByProgram
 
+#Env-Vars
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -37,6 +41,7 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 
 with app.app_context():
+    print(app.config['SECRET_ACCESS_KEY'])
     db.create_all()
     from resources.resources import Resources, ResourcesByProgram
 

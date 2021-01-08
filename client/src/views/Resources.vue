@@ -92,6 +92,7 @@ export default {
       let resourceImg = event;
       const resource = new FormData();
       resource.append("image", this.image);
+      resource.append("program_id", this.program.id);
       for (let value of resource.values()) {
         console.log(value);
       }
