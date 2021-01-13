@@ -21,7 +21,7 @@ from models.trial import Trial as TrialModel
 from resources.users import User
 from resources.clients import Clients, ClientsByUser
 from resources.programs import Programs, ProgramsByClient
-from resources.trials import Trial, TrialsByClient, TrialsByProgram
+from resources.trials import Trial, TrialsByClient, TrialsByProgram, DeleteTrialByID
 
 #Env-Vars
 import os
@@ -62,19 +62,29 @@ def token_required(f):
 
         return f(*args, **kwargs)
 
+#API RESOURCES
 
-#Resources
+#Users
 api.add_resource(User, "/users")
+
+#Clients
 api.add_resource(Clients, "/clients")
 api.add_resource(ClientsByUser, "/clients-by-user/<string:user_id>")
+
+#Programs
 api.add_resource(Programs, "/programs")
 api.add_resource(ProgramsByClient, "/programs-by-client/<string:client_id>")
+
+#Resources
 api.add_resource(Resources, "/resources")
 api.add_resource(ResourcesByProgram, "/resources-by-program/<string:program_id>")
 api.add_resource(DeleteResourceByID, "/delete-resource-by-id/<string:resource_id>")
+
+#Trials
 api.add_resource(Trial, "/trials")
 api.add_resource(TrialsByClient, "/trials-by-client/<string:client_id>")
 api.add_resource(TrialsByProgram, "/trials-by-program/<string:program_id>")
+api.add_resource(DeleteTrialByID, "/delete-trial-by-id/<string:trial_id>")
 
 
 #Login and testing

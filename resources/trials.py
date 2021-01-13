@@ -33,3 +33,12 @@ class TrialsByProgram(Resource):
 class TrialsByClient(Resource):
     def get(self, client_id):
         return [trial.json() for trial in TrialModel.query.filter_by(client_id=client_id).all()]
+
+class DeleteTrialByID(Resource):
+    def delete(self, trial_id):
+        try:
+            item = TrialModel.query.filter_by(id=trial_id).first()
+            item.delete()
+            return "OK"
+        except Exception as e:
+            return str(e)

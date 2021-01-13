@@ -5,6 +5,7 @@ export default class TrialAPI {
     trials: "/trials",
     byClient: "/trials-by-client",
     byProgram: "/trials-by-program",
+    deleteByID: "/delete-trial-by-id",
   };
 
   static postTrial(trial) {
@@ -17,5 +18,9 @@ export default class TrialAPI {
 
   static getTrialsByProgram(program_id) {
     return api.get(`${this.routes.byProgram}/${program_id}`);
+  }
+
+  static deleteTrialById(trial_id) {
+    return api.delete(`${this.routes.deleteByID}/${trial_id}`);
   }
 }

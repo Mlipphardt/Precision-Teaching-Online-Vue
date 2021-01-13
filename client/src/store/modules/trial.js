@@ -105,6 +105,21 @@ const actions = {
     console.log("Sending trial to server...");
     TrialAPI.postTrial(trial);
   },
+  deleteTrialByID({ commit }, trial_id) {
+    console.log("Deleting trial...");
+    return new Promise((resolve, reject) => {
+      TrialAPI.deleteTrialById(trial_id)
+        .then((res) => {
+          console.log(res);
+          console.log("Trial deletion successful");
+          resolve();
+        })
+        .catch((err) => {
+          console.log(err);
+          reject();
+        });
+    });
+  },
 };
 
 export default {
