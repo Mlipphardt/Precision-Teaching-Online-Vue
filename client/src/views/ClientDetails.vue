@@ -1,5 +1,8 @@
 <template>
-  <v-container class="wrapper mt-5">
+  <v-container class="wrapper mt-8">
+    <div class="back-icon" @click="$router.push('/client-details')">
+      <v-icon>mdi-chevron-left</v-icon>
+    </div>
     <v-row>
       <v-spacer />
       <v-col>

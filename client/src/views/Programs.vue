@@ -1,6 +1,9 @@
 <template>
-  <v-container>
-    <v-row class="mt-6">
+  <v-container class="mt-6">
+    <div class="back-icon" @click="$router.push('/client-details')">
+      <v-icon>mdi-chevron-left</v-icon>
+    </div>
+    <v-row>
       <v-col cols="2" class="pb-0">
         <v-btn color="#00FF00" dark @click="programDialog = true"
           ><v-icon class="mr-1">mdi-plus</v-icon>Add Program</v-btn

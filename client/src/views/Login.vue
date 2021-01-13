@@ -62,28 +62,47 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
-                  <v-text-field v-model="email" label="Email"> </v-text-field>
+                <v-col class="thin-form">
+                  <v-text-field
+                    v-model="email"
+                    :error="emailErrors"
+                    :label="emailErrors ? '* Email' : 'Email'"
+                  >
+                  </v-text-field>
+                  <span class="error-text" :class="emailErrors ? '' : 'hide'"
+                    >Please provide a valid email.</span
+                  >
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
+                <v-col class="thin-form">
                   <v-text-field
+                    class="pb-0"
                     v-model="password"
-                    label="Password"
+                    :error="passwordErrors"
+                    :label="passwordErrors ? '* Password' : 'Password'"
                     :type="showPassword ? 'text' : 'password'"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="showPassword = !showPassword"
                   ></v-text-field>
+                  <span class="error-text" :class="passwordErrors ? '' : 'hide'"
+                    >Passwords must be at least six characters long.</span
+                  >
                 </v-col>
               </v-row>
               <v-row>
-                <v-col>
+                <v-col class="thin-form">
                   <v-select
                     :items="occupationList"
+                    :label="occupationErrors ? '* Occupation' : 'Occupation'"
                     v-model="occupation"
-                    label="Occupation"
+                    :error="occupationErrors"
                   ></v-select>
+                  <span
+                    class="error-text"
+                    :class="occupationErrors ? '' : 'hide'"
+                    >Required.</span
+                  >
                 </v-col>
               </v-row>
               <v-row>
@@ -102,7 +121,10 @@
 </template>
 
 <script>
+import validationMixin from "../mixins/validationMixin";
+
 export default {
+  mixins: [validationMixin],
   data() {
     return {
       email: "",
@@ -134,8 +156,13 @@ export default {
         password: this.password,
         position: this.occupation,
       };
-      this.$store.dispatch("auth/registerUser", user);
-      this.signupSwitch();
+      if (this.validateRegister(user)) {
+        console.log("Validation success!");
+        this.$store.dispatch("auth/registerUser", user);
+        this.signupSwitch();
+      } else {
+        console.log("Validation failure, please correct the errors.");
+      }
     },
     logIn() {
       let user = {
@@ -151,6 +178,12 @@ export default {
 <style lang="scss">
 .v-dialog--fullscreen {
   background-color: #ffffff;
+}
+
+.thin-form {
+  .v-text-field__details {
+    display: none !important;
+  }
 }
 </style>
 

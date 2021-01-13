@@ -26,4 +26,12 @@ export default {
 
 <style lang="scss">
 @import "../public/styles.css";
+.back-icon {
+  cursor: pointer;
+  position: absolute;
+  left: 35px;
+  .v-icon {
+    font-size: 55px;
+  }
+}
 </style>

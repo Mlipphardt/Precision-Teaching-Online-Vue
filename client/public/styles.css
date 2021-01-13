@@ -35,3 +35,7 @@ body {
   color: #ff0000;
   font-size: 12px;
 }
+
+.hide {
+  opacity: 0;
+}
