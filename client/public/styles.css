@@ -28,4 +28,10 @@ body {
   position: absolute !important;
   top: 10px;
   right: 10px;
+  cursor: pointer;
+}
+
+.error-text {
+  color: #ff0000;
+  font-size: 12px;
 }

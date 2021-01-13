@@ -41,7 +41,6 @@ db.init_app(app)
 bcrypt = Bcrypt(app)
 
 with app.app_context():
-    print(app.config['SECRET_ACCESS_KEY'])
     db.create_all()
     from resources.resources import Resources, ResourcesByProgram, DeleteResourceByID
 
@@ -90,12 +89,7 @@ def moves():
 @app.route('/register', methods=['POST'])
 #@cross_origin(origin='*')
 def register():
-    print("Registering")
     json_request = request.get_json()
-    
-    print(json_request)
-    #return request.get_json()
-
     email_address = json_request["email_address"]
     password = bcrypt.generate_password_hash(json_request["password"]).decode('utf-8')
     position = json_request["position"]
@@ -114,7 +108,6 @@ def register():
 @app.route('/login', methods=['POST'])
 def login():
     json_request = request.get_json()
-    print(json_request)
 
     email_address = json_request['email_address']
     password = json_request['password']

@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="shrink-col-top">
       <v-col class="shrink-col-top text-center">
-        <v-btn class="success"> Begin </v-btn>
+        <v-btn class="success" @click="prepareTrial"> Begin </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -16,6 +16,9 @@ export default {
   methods: {
     trialSwitch() {
       console.log("Switching trial status");
+    },
+    prepareTrial() {
+      this.$emit("prepare-trial");
     },
   },
 };
