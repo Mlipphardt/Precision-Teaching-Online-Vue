@@ -5,25 +5,24 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import WelcomeCarousel from "../components/WelcomeCarousel";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    WelcomeCarousel
-  }
-}
+    WelcomeCarousel,
+  },
+};
 </script>
 
 <style scoped>
-.home{
+.home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   height: 85vh;
   align-content: center;
-  text-align: center
+  text-align: center;
 }
 </style>

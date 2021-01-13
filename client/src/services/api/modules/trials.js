@@ -2,7 +2,7 @@ import api from "../api";
 
 export default class TrialAPI {
   static routes = {
-    trials: "/clients",
+    trials: "/trials",
     byClient: "/trials-by-client",
     byProgram: "/trials-by-program",
   };

@@ -6,6 +6,7 @@ const defaultState = () => {
     time: 0,
     savedTime: 0,
     timer: null,
+    trialFinishSwitch: false,
   };
 };
 
@@ -27,10 +28,12 @@ const mutations = {
   },
   START_TIMER(state) {
     state.timer = setInterval(() => {
-      console.log("Firing");
       if (state.time > 0) {
-        console.log("firing here");
         state.time--;
+      } else {
+        clearInterval(state.timer);
+        state.time = state.savedTime;
+        state.trialFinishSwitch = !state.trialFinishSwitch;
       }
     }, 1000);
   },
@@ -60,7 +63,6 @@ const actions = {
       TrialAPI.getTrialsByProgram(program_id)
         .then((res) => {
           console.log(res);
-          console.log("Trial lookup successful.");
           resolve(res.data);
         })
         .catch((err) => {
@@ -98,6 +100,10 @@ const actions = {
   clearTimer({ commit }) {
     console.log("Clearing timer...");
     commit("CLEAR_TIMER");
+  },
+  saveTrial({ commit }, trial) {
+    console.log("Sending trial to server...");
+    TrialAPI.postTrial(trial);
   },
 };
 

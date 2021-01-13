@@ -3,6 +3,11 @@ from models.trial import Trial as TrialModel
 
 class Trial(Resource):
     parser = reqparse.RequestParser()
+    parser.add_argument('client_id')
+    parser.add_argument('program_id')
+    parser.add_argument('score')
+    parser.add_argument('time')
+
 
     def get(self):
         return 'Hello, world!'
@@ -10,8 +15,12 @@ class Trial(Resource):
     def post(self):
         data = Trial.parser.parse_args()
         try:
-            image      = data['image']
+            time       = data['time']
+            score      = data['score']
             program_id = data['program_id']
+            client_id  = data['client_id']
+            item = TrialModel(None, score, time, program_id, client_id)
+            item.save()
             return data
 
         except Exception as err:

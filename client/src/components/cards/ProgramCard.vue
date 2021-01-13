@@ -23,7 +23,13 @@
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn fab dark color="#00AAFF" v-bind="attrs" v-on="on"
+            <v-btn
+              fab
+              dark
+              color="#00AAFF"
+              v-bind="attrs"
+              v-on="on"
+              @click="manageProgramScores"
               ><v-icon>mdi-school</v-icon></v-btn
             >
           </template>
@@ -60,6 +66,10 @@ export default {
     manageProgramResources() {
       this.$store.dispatch("program/setProgram", this.program);
       this.$router.push("/resources");
+    },
+    manageProgramScores() {
+      this.$store.dispatch("program/setProgram", this.program);
+      this.$router.push("/scores");
     },
     runTrial() {
       this.$store.dispatch("program/setProgram", this.program);

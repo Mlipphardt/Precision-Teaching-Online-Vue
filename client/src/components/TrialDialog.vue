@@ -21,13 +21,24 @@
       @click="resetTrial"
       >Reset Trial</v-btn
     >
+    <v-dialog v-model="trialCompleteDialog" height="250" width="500">
+      <TrialComplete
+        @discard-trial="trialCompleteDialog = false"
+        :program="program"
+        :client="client"
+      />
+    </v-dialog>
   </div>
 </template>
 
 <script>
+import TrialComplete from "./TrialComplete";
 import { mapState } from "vuex";
 
 export default {
+  components: {
+    TrialComplete,
+  },
   data() {
     return {
       resources: [],
@@ -36,6 +47,7 @@ export default {
       currentIndex: 0,
       imageLink: "",
       trialActive: false,
+      trialCompleteDialog: false,
     };
   },
   created() {
@@ -49,8 +61,16 @@ export default {
         console.log(err);
       });
   },
+  watch: {
+    trialFinishSwitch() {
+      console.log("Trial complete!");
+      this.trialActive = false;
+      this.trialCompleteDialog = true;
+      this.trialCompleteStep = 1;
+    },
+  },
   computed: {
-    ...mapState("trial", ["time"]),
+    ...mapState("trial", ["time", "trialFinishSwitch"]),
     client() {
       return this.$store.getters["client/getClient"];
     },

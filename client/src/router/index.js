@@ -9,6 +9,7 @@ import Programs from "../views/Programs.vue";
 import Trial from "../views/Trial.vue";
 import ClientDetails from "../views/ClientDetails";
 import Resources from "../views/Resources";
+import Scores from "../views/Scores";
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,11 @@ const routes = [
     path: "/resources",
     name: "Resources",
     component: Resources,
+  },
+  {
+    path: "/scores",
+    name: "Scores",
+    component: Scores,
   },
   {
     path: "/about",
