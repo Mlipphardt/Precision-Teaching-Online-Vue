@@ -3,8 +3,11 @@
     <v-card width="600" class="mb-12 pa-8">
       <v-row>
         <v-spacer />
-        <v-col class="text-center">
+        <v-col class="text-center" cols="6">
           <h2>Login</h2>
+          <span class="error-text" :class="loginError ? '' : 'hide'"
+            >There was an error with your login.</span
+          >
         </v-col>
         <v-spacer />
       </v-row>
@@ -130,6 +133,7 @@ export default {
       email: "",
       password: "",
       occupation: "",
+      loginError: false,
       occupationList: [
         "Board-Certified Behavior Analyst",
         "Board-Certified assistant Behavior Analyst",
@@ -169,7 +173,17 @@ export default {
         email_address: this.email,
         password: this.password,
       };
-      this.$store.dispatch("auth/loginUser", user);
+      this.$store
+        .dispatch("auth/loginUser", user)
+        .then((res) => {
+          console.log("here!");
+          this.$router.push("/clients");
+        })
+        .catch((err) => {
+          //TODO: Some kind of modal or message for login errors
+          console.log("Login error!");
+          this.loginError = true;
+        });
     },
   },
 };

@@ -21,17 +21,16 @@ const mutations = {
 };
 
 const actions = {
-  createProgram({ commit }, client) {
+  createProgram({ commit }, program) {
     return new Promise((resolve, reject) => {
-      ProgramAPI.postProgram(client)
+      ProgramAPI.postProgram(program)
         .then((res) => {
           console.log(res);
           alert("Program successfully created!");
           resolve();
         })
         .catch((err) => {
-          console.log(err);
-          reject();
+          reject(err);
         });
     });
   },

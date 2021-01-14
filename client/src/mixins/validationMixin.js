@@ -8,9 +8,46 @@ export default {
       emailErrors: false,
       passwordErrors: false,
       occupationErrors: false,
+      initialsError: false,
+      programNameErrors: false,
+      programMeasureErrors: false,
     };
   },
   methods: {
+    validateProgram(program) {
+      this.validated = true;
+      this.programNameErrors = false;
+      this.programMeasureErrors = false;
+
+      if (!this.validateTextField(program.name)) {
+        this.programNameErrors = true;
+        this.validated = false;
+      }
+      if (!this.validatePassword(program.measure)) {
+        this.programMeasureErrors = true;
+        this.validated = false;
+      }
+      return this.validated;
+    },
+    validateInitials(initials) {
+      let errors = [];
+      if (initials.length > 2) {
+        errors.push("Maximum valid length is 2 characters.");
+      }
+      let initialsRegex = /[a-zA-z][a-zA-z]/;
+      if (!initialsRegex.test(initials)) {
+        errors.push("Invalid characters in initials.");
+      }
+
+      if (errors.length === 0) {
+        console.log("Validation success: Initials");
+        return true;
+      } else {
+        console.log("Validation failed: Initials");
+        console.log(errors);
+        return false;
+      }
+    },
     validateRegister(user) {
       this.validated = true;
       this.emailErrors = false;
@@ -43,9 +80,22 @@ export default {
       let errors = [];
       console.log("Validating text field with the following text: " + text);
 
+      if (text.indexOf(";") > -1) {
+        errors.push("Invalid character.");
+      }
+
       //Not empty
       if (this.checkNotEmpty(text)) {
         errors.push("Required.");
+      }
+
+      if (errors.length === 0) {
+        console.log("Validation success: Text");
+        return true;
+      } else {
+        console.log("Validation failed: Text");
+        console.log(errors);
+        return false;
       }
     },
     validateEmail(email) {

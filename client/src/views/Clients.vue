@@ -27,12 +27,20 @@
       <v-card class="pa-3">
         <v-row>
           <v-col>
-            <v-text-field v-model="clientInitials" label="Client Initials" />
+            <v-text-field
+              :error="initialsError ? true : false"
+              v-model="clientInitials"
+              :label="initialsError ? '* Client Initials' : 'Client Initials'"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col class="d-flex justify-end pt-0">
-            <v-btn dark color="#00FF00" @click="addClient"
+            <v-btn
+              :dark="clientInitials.length < 3 ? true : false"
+              :disabled="clientInitials.length > 2 ? true : false"
+              color="#00FF00"
+              @click="addClient"
               >Add<v-icon class="ml-2">mdi-plus</v-icon></v-btn
             >
           </v-col>
@@ -43,7 +51,10 @@
 </template>
 
 <script>
+import validationMixin from "../mixins/validationMixin";
+
 export default {
+  mixins: [validationMixin],
   data() {
     return {
       registerDialog: false,
@@ -63,12 +74,23 @@ export default {
   },
   methods: {
     addClient() {
-      let newClient = {
-        initials: this.clientInitials,
-        user_id: this.user_id,
-      };
-      this.$store.dispatch("client/createClient", newClient);
-      console.log(newClient);
+      if (this.validateInitials(this.clientInitials)) {
+        let newClient = {
+          initials: this.clientInitials.toUpperCase(),
+          user_id: this.user_id,
+        };
+        this.$store
+          .dispatch("client/createClient", newClient)
+          .then((res) => {
+            location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        console.log(newClient);
+      } else {
+        this.initialsError = true;
+      }
     },
     fetchClients() {
       console.log("Fetching clients...");

@@ -40,19 +40,30 @@ const actions = {
       });
   },
   loginUser({ commit }, user) {
-    AuthAPI.loginUser(user)
-      .then((res) => {
-        console.log(res);
-        if (res.data.token) {
-          commit("LOGIN_USER", res.data);
-          router.push("/clients");
-        } else {
-          console.log(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return new Promise((resolve, reject) => {
+      if (
+        user.email_address.indexOf(" ") > -1 ||
+        user.email_address.indexOf(";") > -1
+      ) {
+        reject("Login error");
+      }
+      if (user.password.indexOf(" ") > -1 || user.password.indexOf(";") > -1) {
+        reject("Login error");
+      }
+      AuthAPI.loginUser(user)
+        .then((res) => {
+          console.log(res);
+          if (res.data.token) {
+            commit("LOGIN_USER", res.data);
+            resolve(true);
+          } else {
+            console.log(res.data);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   },
   logoutUser({ commit }) {
     commit("LOGOUT_USER");

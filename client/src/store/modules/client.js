@@ -26,7 +26,6 @@ const actions = {
       ClientAPI.postClient(client)
         .then((res) => {
           console.log(res);
-          alert("Client successfully created!");
           resolve();
         })
         .catch((err) => {

@@ -47,12 +47,21 @@
         </v-row>
         <v-row>
           <v-col class="pb-0">
-            <v-text-field v-model="name" label="Program Name" />
+            <v-text-field
+              v-model="name"
+              :error="programNameErrors ? true : false"
+              :label="programNameErrors ? '* Program Name' : 'Program Name'"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col class="pt-0">
-            <v-select :items="measureOptions" v-model="measure"></v-select>
+            <v-select
+              :items="measureOptions"
+              v-model="measure"
+              :error="programMeasureErrors ? true : false"
+              :label="programMeasureErrors ? '* Measure' : 'Measure'"
+            ></v-select>
           </v-col>
         </v-row>
         <v-row>
@@ -69,12 +78,14 @@
 
 <script>
 import ProgramCard from "../components/cards/ProgramCard";
+import validationMixin from "../mixins/validationMixin";
 
 export default {
   name: "Programs",
   components: {
     ProgramCard,
   },
+  mixins: [validationMixin],
   data() {
     return {
       programs: [],
@@ -110,8 +121,19 @@ export default {
         measure: this.measure,
         client_id: this.client.id,
       };
-      console.log(program);
-      this.$store.dispatch("program/createProgram", program);
+      if (this.validateProgram(program)) {
+        console.log(program);
+        this.$store
+          .dispatch("program/createProgram", program)
+          .then(() => {
+            window.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        console.log("Errors in program creation form.");
+      }
     },
   },
 };

@@ -7,10 +7,18 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-text-field label="Correct" v-model="correct" />
+        <v-text-field
+          :label="correctError ? '* Correct' : 'Correct'"
+          :error="correctError ? true : false"
+          v-model="correct"
+        />
       </v-col>
       <v-col>
-        <v-text-field label="Incorrect" v-model="incorrect" />
+        <v-text-field
+          :label="incorrectError ? '* Incorrect' : 'Incorrect'"
+          :error="incorrectError ? true : false"
+          v-model="incorrect"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -53,6 +61,8 @@ export default {
     return {
       correct: 0,
       incorrect: 0,
+      correctError: false,
+      incorrectError: false,
       trialCompleteStep: 1,
     };
   },
@@ -77,6 +87,20 @@ export default {
     },
     saveTrial() {
       console.log("Saving trial...");
+      if (
+        Number.isNaN(parseInt(this.correct)) &&
+        Number.isNaN(parseInt(this.incorrect))
+      ) {
+        this.correctError = true;
+        this.incorrectError = true;
+        return;
+      } else if (Number.isNaN(parseInt(this.correct))) {
+        this.correctError = true;
+        return;
+      } else if (Number.isNaN(parseInt(this.incorrect))) {
+        this.incorrectError = true;
+        return;
+      }
       let trial = {
         program_id: this.program.id,
         client_id: this.client.id,
